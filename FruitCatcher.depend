@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1634579060 source:d:\code\c\fruitcatcher\menu.c
+
+1634579553 source:d:\code\c\fruitcatcher\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<conio.h>
+	<time.h>
+	<string.h>
+
+1634482051 source:d:\code\c\fruitcatcher\fruits.c
+
+1634579182 source:d:\code\c\fruitcatcher\gameover.c
+	<stdio.h>
+
