@@ -1,20 +1,16 @@
 #include<stdio.h>
-struct letter {
-    char ch[1000];
-    int x;
-    int y;
-};
+
 
 struct man {
     char name[10];
     int score;
 };
 
-void printChar(struct letter* cha, int x, int y) {
+void printChar(char* ch, int x, int y) {
     gotoxy(x, y);
-    for (int i = 0; cha->ch[i] != '\0'; i++) {
-        if (cha->ch[i] != '\n') {
-            printf("%c", cha->ch[i]);
+    for (int i = 0; ch[i] != '\0'; i++) {
+        if (ch[i] != '\n') {
+            printf("%c", ch[i]);
         } else {
             y = y + 1;
             gotoxy(x, y);
@@ -22,94 +18,112 @@ void printChar(struct letter* cha, int x, int y) {
     }
 }
 
+struct man* sort(struct man* top, int yourScore, char* name, int position) {
+    for (int i = 7; i > position; i--) {
+        strcpy(top[i].name, top[i - 1].name);
+        top[i].score = top[i - 1].score;
+    }
+    strcpy(top[position].name, name);
+    top[position].score = yourScore;
+    return top;
+}
+
+int checkPoint(struct man* top, int newPoint) {
+    for (int i = 0; i < 8; i++) {
+        if (newPoint >= top[i].score) {
+            return i + 1;
+        }
+    }
+    return 0;
+}
 
 
 int gameOver(int point) {
-    struct letter* g = (struct letter*)malloc(sizeof(struct letter));
+    char* g = (char*)malloc(500);
 
-    strcpy(g->ch, "  $$$$$$$$$$\n");
-    strcat(g->ch, " $$$      $$$\n");
-    strcat(g->ch, " $$\n");
-    strcat(g->ch, " $$\n");
-    strcat(g->ch, " $$        $$\n");
-    strcat(g->ch, " $$      $$$$$$\n");
-    strcat(g->ch, " $$        $$\n");
-    strcat(g->ch, " $$$      $$$\n");
-    strcat(g->ch, "  $$$$$$$$$$\n");
-
-
-    struct letter* a = (struct letter*)malloc(sizeof(struct letter));
-
-    strcpy(a->ch, "         $\n");
-    strcat(a->ch, "        $$$\n");
-    strcat(a->ch, "       $$$$$\n");
-    strcat(a->ch, "      $$$ $$$\n");
-    strcat(a->ch, "     $$$   $$$\n");
-    strcat(a->ch, "    $$$$$$$$$$$\n");
-    strcat(a->ch, "   $$$       $$$\n");
-    strcat(a->ch, "  $$$         $$$\n");
-    strcat(a->ch, " $$$           $$$\n");
-
-    struct letter* m = (struct letter*)malloc(sizeof(struct letter));
-
-    strcpy(m->ch, "         $       $\n");
-    strcat(m->ch, "        $$$     $$$\n");
-    strcat(m->ch, "       $$$$$   $$$$$\n");
-    strcat(m->ch, "      $$$ $$$ $$$ $$$\n");
-    strcat(m->ch, "     $$$   $$ $$   $$$\n");
-    strcat(m->ch, "    $$$     $$$     $$$\n");
-    strcat(m->ch, "   $$$               $$$\n");
-    strcat(m->ch, "  $$$                 $$$\n");
-    strcat(m->ch, " $$$                   $$$\n");
-
-    struct letter* e = (struct letter*)malloc(sizeof(struct letter));
-
-    strcpy(e->ch, "   $$$$$$$$\n");
-    strcat(e->ch, "  $$$\n");
-    strcat(e->ch, "  $$\n");
-    strcat(e->ch, "  $$\n");
-    strcat(e->ch, "  $$$$$$$$$\n");
-    strcat(e->ch, "  $$\n");
-    strcat(e->ch, "  $$\n");
-    strcat(e->ch, "  $$$\n");
-    strcat(e->ch, "   $$$$$$$$\n");
+    strcpy(g, "  $$$$$$$$$$\n");
+    strcat(g, " $$$      $$$\n");
+    strcat(g, " $$\n");
+    strcat(g, " $$\n");
+    strcat(g, " $$        $$\n");
+    strcat(g, " $$      $$$$$$\n");
+    strcat(g, " $$        $$\n");
+    strcat(g, " $$$      $$$\n");
+    strcat(g, "  $$$$$$$$$$\n");
 
 
-    struct letter* o = (struct letter*)malloc(sizeof(struct letter));
+    char* a = (char*)malloc(500);
 
-    strcpy(o->ch, "   $$$$$$$\n");
-    strcat(o->ch, "  $$     $$\n");
-    strcat(o->ch, " $$       $$\n");
-    strcat(o->ch, " $$       $$\n");
-    strcat(o->ch, " $$       $$\n");
-    strcat(o->ch, " $$       $$\n");
-    strcat(o->ch, " $$       $$\n");
-    strcat(o->ch, "  $$     $$\n");
-    strcat(o->ch, "   $$$$$$$\n");
+    strcpy(a, "         $\n");
+    strcat(a, "        $$$\n");
+    strcat(a, "       $$$$$\n");
+    strcat(a, "      $$$ $$$\n");
+    strcat(a, "     $$$   $$$\n");
+    strcat(a, "    $$$$$$$$$$$\n");
+    strcat(a, "   $$$       $$$\n");
+    strcat(a, "  $$$         $$$\n");
+    strcat(a, " $$$           $$$\n");
 
-    struct letter* v = (struct letter*)malloc(sizeof(struct letter));
+    char* m = (char*)malloc(500);
 
-    strcpy(v->ch, " $$              $$\n");
-    strcat(v->ch, " $$$            $$$\n");
-    strcat(v->ch, "  $$$          $$$\n");
-    strcat(v->ch, "   $$$        $$$\n");
-    strcat(v->ch, "    $$$      $$$\n");
-    strcat(v->ch, "     $$$    $$$\n");
-    strcat(v->ch, "      $$$  $$$\n");
-    strcat(v->ch, "       $$$$$$\n");
-    strcat(v->ch, "        $$$$\n");
+    strcpy(m, "         $       $\n");
+    strcat(m, "        $$$     $$$\n");
+    strcat(m, "       $$$$$   $$$$$\n");
+    strcat(m, "      $$$ $$$ $$$ $$$\n");
+    strcat(m, "     $$$   $$ $$   $$$\n");
+    strcat(m, "    $$$     $$$     $$$\n");
+    strcat(m, "   $$$               $$$\n");
+    strcat(m, "  $$$                 $$$\n");
+    strcat(m, " $$$                   $$$\n");
 
-    struct letter* r = (struct letter*)malloc(sizeof(struct letter));
+    char* e = (char*)malloc(500);
 
-    strcpy(r->ch, " $$$$$$$$$\n");
-    strcat(r->ch, " $$$    $$$\n");
-    strcat(r->ch, " $$      $$\n");
-    strcat(r->ch, " $$$    $$$\n");
-    strcat(r->ch, " $$$$$$$$$\n");
-    strcat(r->ch, " $$    $$\n");
-    strcat(r->ch, " $$     $$\n");
-    strcat(r->ch, " $$      $$\n");
-    strcat(r->ch, " $$       $$\n");
+    strcpy(e, "   $$$$$$$$\n");
+    strcat(e, "  $$$\n");
+    strcat(e, "  $$\n");
+    strcat(e, "  $$\n");
+    strcat(e, "  $$$$$$$$$\n");
+    strcat(e, "  $$\n");
+    strcat(e, "  $$\n");
+    strcat(e, "  $$$\n");
+    strcat(e, "   $$$$$$$$\n");
+
+
+    char* o = (char*)malloc(500);
+
+    strcpy(o, "   $$$$$$$\n");
+    strcat(o, "  $$     $$\n");
+    strcat(o, " $$       $$\n");
+    strcat(o, " $$       $$\n");
+    strcat(o, " $$       $$\n");
+    strcat(o, " $$       $$\n");
+    strcat(o, " $$       $$\n");
+    strcat(o, "  $$     $$\n");
+    strcat(o, "   $$$$$$$\n");
+
+    char* v = (char*)malloc(500);
+
+    strcpy(v, " $$              $$\n");
+    strcat(v, " $$$            $$$\n");
+    strcat(v, "  $$$          $$$\n");
+    strcat(v, "   $$$        $$$\n");
+    strcat(v, "    $$$      $$$\n");
+    strcat(v, "     $$$    $$$\n");
+    strcat(v, "      $$$  $$$\n");
+    strcat(v, "       $$$$$$\n");
+    strcat(v, "        $$$$\n");
+
+    char* r = (char*)malloc(500);
+
+    strcpy(r, " $$$$$$$$$\n");
+    strcat(r, " $$$    $$$\n");
+    strcat(r, " $$      $$\n");
+    strcat(r, " $$$    $$$\n");
+    strcat(r, " $$$$$$$$$\n");
+    strcat(r, " $$    $$\n");
+    strcat(r, " $$     $$\n");
+    strcat(r, " $$      $$\n");
+    strcat(r, " $$       $$\n");
 
     textcolor(4);
     printChar(g, 9, 2);
@@ -147,8 +161,10 @@ int gameOver(int point) {
 
         printf("Your score in top %d", i);
         gotoxy(11, 17);
+        ShowConsoleCursor(1);
         printf("Enter your name to save: ");
-        scanf("%s", name);
+        scanf("%7s", name);
+        ShowConsoleCursor(0);
         top = sort(top, point, name, i - 1);
     } else {
         printf("You are not in top score");
@@ -160,5 +176,13 @@ int gameOver(int point) {
     fprintf(name, "%s %s %s %s %s %s %s %s", top[0].name, top[1].name, top[2].name, top[3].name, top[4].name, top[5].name, top[6].name, top[7].name);
     fclose(score);
     fclose(name);
+    free(g);
+    free(a);
+    free(m);
+    free(e);
+    free(o);
+    free(v);
+    free(r);
+    free(top);
     return menuAgain();
 }

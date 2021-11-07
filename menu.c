@@ -9,78 +9,98 @@ void colorForMenu(char s[20], int position_x, int position_y , int color) {
     }
 }
 
+void fruitInMenu()  {
+    gotoxy(15, 6);
+    textcolor(2);
+    printf("   /\n");
+    textcolor(5);
+    gotoxy(15, 7);
+    printf(" ()()\n");
+    gotoxy(15, 8);
+    printf("()()()\n");
+    gotoxy(15, 9);
+    printf(" ()()\n");
+    gotoxy(15, 10);
+    printf("  ()");
+
+    gotoxy(67, 2);
+    textcolor(2);
+    printf(",\n");
+    textcolor(14);
+    gotoxy(67, 3);
+    printf("\\`.__.. \n");
+    gotoxy(67, 4);
+    printf(" `.__,'  \n");
+    textcolor(15);
+
+}
+
 
 void welcome() {
     char str[2000];
-    strcpy(str,"                                                                                                      \n");
-    strcat(str,"                                                                                                      \n");
-    strcat(str,"                        $$$    $$$             $$       $$         ,                                  \n");
-    strcat(str,"                         $$$    $$$   $       $$        $$         \`.__..                            \n");
-    strcat(str,"                          $$$    $$$ $$      $$         $$          `._,'                             \n");
-    strcat(str,"                           $$$    $$$$      $$          $$                                            \n");
-    strcat(str,"                  /         $$$    $$$$    $$    $$$$   $$     $$$$    $$$$   $$$  $$$    $$$$        \n");
-    strcat(str,"                ()()         $$$  $$ $$$  $$    $    $  $$    $       $    $  $   $   $  $    $       \n");
-    strcat(str,"               ()()()         $$$$$   $$$$$     $$$$$$  $$    $       $    $  $   $   $  $$$$$$       \n");
-    strcat(str,"                ()()           $$$     $$$      $       $$$$  $    $  $    $  $   $   $  $            \n");
-    strcat(str,"                 ()             $       $        $$$$    $$$   $$$$    $$$$   $   $   $   $$$$        \n");
-    strcat(str,"                                                                                                  \n");
-    strcat(str,"                                                       $                                          \n");
-    strcat(str,"                                                      $$    $$$$                                  \n");
-    strcat(str,"                                                    $$$$$  $    $                                 \n");
-    strcat(str,"                                                      $$   $    $                                 \n");
-    strcat(str,"                                                      $$ $ $    $                                 \n");
-    strcat(str,"                                                       $$   $$$$                                  \n");
-    strcat(str,"                                                                                                  \n");
+    strcpy(str,"\n");
+    strcat(str,"\n");
+    strcat(str,"                        $$$    $$$             $$       $$\n");
+    strcat(str,"                         $$$    $$$   $       $$        $$\n");
+    strcat(str,"                          $$$    $$$ $$      $$         $$\n");
+    strcat(str,"                           $$$    $$$$      $$          $$\n");
+    strcat(str,"                            $$$    $$$$    $$    $$$$   $$     $$$$    $$$$   $$$  $$$    $$$$\n");
+    strcat(str,"                             $$$  $$ $$$  $$    $    $  $$    $       $    $  $   $   $  $    $\n");
+    strcat(str,"                              $$$$$   $$$$$     $$$$$$  $$    $       $    $  $   $   $  $$$$$$\n");
+    strcat(str,"                               $$$     $$$      $       $$$$  $    $  $    $  $   $   $  $\n");
+    strcat(str,"                                $       $        $$$$    $$$   $$$$    $$$$   $   $   $   $$$$\n");
+    strcat(str,"\n");
+    strcat(str,"                                                       $\n");
+    strcat(str,"                                                      $$     $$$$\n");
+    strcat(str,"                                                    $$$$$   $    $\n");
+    strcat(str,"                                                      $$    $    $\n");
+    strcat(str,"                                                      $$ $  $    $\n");
+    strcat(str,"                                                       $$    $$$$\n");
+    strcat(str,"\n");
     ShowConsoleCursor(0);
     for (int i = 0; str[i] != '\0'; i++) {
         printf("%c", str[i]);
-//        delay(1);
+        delay(1);
     }
+    fruitInMenu();
+    delay(500);
+    gotoxy(0, 19);
+    printf("                                             __________Menu Game___________");
+    gotoxy(3, 28);
+    printf("This project is copyright by group 10");
+
 }
 
 
 int printMenu(){
     welcome();
-    printf("                                             __________Menu Game___________                       \n");
-    gotoxy(3, 28);
-    printf("This project is copyright by group 10");
-//    printf("                                                                                                  \n");
-//    printf("                                                                                                  \n");
-//    printf("                                     [1].Play                                                    \n");
-//    printf("                                     [2].Introduce                                               \n");
-//    printf("                                     [3].Exit                                                    \n");
-//    printf("                                                                                                 \n");
-
     int n = 21;
-    char str[3][20];
-    strcpy(str[0], "Play");
-    strcpy(str[1], "Score");
-    strcpy(str[2], "Exit");
+    char str[][20] = {"Play", "Score", "Exit"};
     for (int i = 0; i < 3; i++) {
-        gotoxy(50, n + i);
+        gotoxy(54, n + i);
         printf("%s", str[i]);
     }
-    colorForMenu(str[0], 50, n, 14);
+    colorForMenu(str[0], 54, n, 14);
     while (1){
         if(_kbhit()){
             int c = getch();
             // 80 = mui ten di xuong
             if(c == 80){
-                colorForMenu(str[n - 21], 50, n, 15);
+                colorForMenu(str[n - 21], 54, n, 15);
                 n++;
                 if(n == 24){
                     n = 21;
                 }
-                colorForMenu(str[n - 21], 50, n, 14);
+                colorForMenu(str[n - 21], 54, n, 14);
             }
             // 72 la mui ten di len
             if(c == 72){
-                colorForMenu(str[n - 21], 50, n, 15);
+                colorForMenu(str[n - 21], 54, n, 15);
                 n--;
                 if(n == 20){
                     n = 23;
                 }
-                colorForMenu(str[n - 21], 50, n, 14);
+                colorForMenu(str[n - 21], 54, n, 14);
             }
             if (c == 13) {
                 break;
