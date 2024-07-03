@@ -1,4 +1,6 @@
-# Welcome to Fruit_Catcher_With_C, a simple yet fun game developed entirely in C! Test your reflexes as you catch falling fruit to rack up points.
+# Welcome to Fruit_Catcher_With_C
+
+A simple yet fun game developed entirely in C! Test your reflexes as you catch falling fruit to rack up points.
 ![image](https://github.com/heterl0/Fruit_Catacher_With_C/assets/86330109/ab62f7b0-73f3-4d81-b5fa-87b545787345)
 
 ## Features
